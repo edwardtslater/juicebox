@@ -8,6 +8,20 @@ const client = new Client ({
     user: "postgres",
 });
 
+async function createUser({ username, password }) {
+  try {
+    const result = await client.query(`
+    SELECT id, username 
+    FROM users;
+    `, `[username, password]`);
+
+    return result;
+  } catch (error) {
+    throw error;
+  }
+}
+
+
 async function getAllUsers() {
     const { rows } = await client.query(
       `SELECT id, username 
@@ -16,18 +30,7 @@ async function getAllUsers() {
   
     return rows;
   }
-  async function createUser({ username, password }) {
-    try {
-      const result = await client.query(`
-      SELECT id, username 
-      FROM users;
-      `, `[username, password]`);
-  
-      return result;
-    } catch (error) {
-      throw error;
-    }
-  }
+ 
 module.exports = {
   client,
   getAllUsers,
