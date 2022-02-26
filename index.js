@@ -1,9 +1,17 @@
 // server
 require('dotenv').config();
-const PORT = 3000;
+const { PORT = 3000 } = process.env
 const express = require('express');
 const server = express();
 
+
+const client = new Client(
+  process.env.DATABASE_URL || {
+    user: "postgres",
+    password: "postgres",
+    database: "juiceboxdev",
+  }
+);
 
 
 
