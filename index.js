@@ -5,7 +5,7 @@ const express = require('express');
 const server = express();
 
 
-const client = new Client(
+const client = newClient(
   process.env.DATABASE_URL || {
     user: "postgres",
     password: "postgres",
@@ -15,7 +15,7 @@ const client = new Client(
 
 
 
-const { client } = require('./db');
+//const { client } = require('./db');
 client.connect();
 
 server.listen(PORT, () => {
