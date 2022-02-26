@@ -7,6 +7,7 @@ const client = new Client(
     user: "postgres",
     password: "postgres",
     database: "juiceboxdev",
+    ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : undefined,
   }
 );
 
