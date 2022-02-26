@@ -5,17 +5,11 @@ const express = require('express');
 const server = express();
 
 
-const client = newClient(
-  process.env.DATABASE_URL || {
-    user: "postgres",
-    password: "postgres",
-    database: "juiceboxdev",
-  }
-);
 
 
 
-//const { client } = require('./db');
+
+const { client } = require('./db');
 client.connect();
 
 server.listen(PORT, () => {
@@ -26,13 +20,6 @@ const morgan = require('morgan');
 server.use(morgan('dev'));
 
 server.use(express.json())
-
-// server.get('/add/:first/to/:second', (req, res, next) => {
-//   res.send(`<h1>${ req.params.first } + ${ req.params.second } = ${
-//     Number(req.params.first) + Number(req.params.second)
-//    }</h1>`);
-// });
-
 
 
 //Router
